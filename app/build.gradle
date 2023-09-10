@@ -5,7 +5,10 @@ plugins {
 
 android {
     namespace 'com.example.fundatecheroes'
-    compileSdk 32
+    compileSdk 33
+    viewBinding {
+        enabled = true
+    }
 
     defaultConfig {
         applicationId "com.example.fundatecheroes"
