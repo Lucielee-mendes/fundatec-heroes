@@ -13,4 +13,12 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+    <style name="AppTheme.NoActionBar.LoginActivity">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+
 </resources>
