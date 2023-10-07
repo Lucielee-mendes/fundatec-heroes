@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".profile.view.ProfileActivity">
+    tools:context=".profile.view.ProfileActivity"
+    android:background="@color/cor1">
 
 
     <ImageView
@@ -86,7 +87,9 @@
         android:layout_marginHorizontal="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
-        android:text="Criar" />
+        android:text="Criar"
+        android:background="@color/cor4"
+        android:textColor="@color/white"/>
 
 
 
