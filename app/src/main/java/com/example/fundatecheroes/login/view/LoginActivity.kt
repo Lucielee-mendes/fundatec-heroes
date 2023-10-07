@@ -61,10 +61,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this@LoginActivity, ProfileActivity::class.java))
         }
     }
-    private fun showEmailError(errorMessage: String) {
+    private fun showEmailError() {
         binding.emailEdit.error = getString(R.string.email_error)    }
 
-    private fun showPasswordError(errorMessage: String) {
+    private fun showPasswordError() {
         binding.passwordEdit.error = getString(R.string.password_error)
     }
 }
