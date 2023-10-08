@@ -2,5 +2,8 @@
     <string name="app_name">fundatecHeroes</string>
     <string name="email_error">Digite um email valido</string>
     <string name="password_error">Digite uma senha valida</string>
+    <string name="nomeHerois">Insira o nome do Heroi/Vilão</string>
+    <string name="description">Insira a descrição do Heroi/Vilão</string>
+    <string name="utlImagemHeroi">Insira a URL da imagem do Heroi/Vilão</string>
 </resources>
 
