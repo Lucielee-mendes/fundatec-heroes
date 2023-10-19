@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
                 binding.emailEdit.text.toString(),
                 binding.passwordEdit.text.toString()
             )
-         // startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+          startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
         }
     }
 

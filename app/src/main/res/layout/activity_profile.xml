@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".profile.view.ProfileActivity"
-    android:background="@color/cor1">
+    android:background="@color/corFundo">
 
 
     <ImageView
@@ -88,7 +88,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
         android:text="Criar"
-        android:background="@color/cor4"
+        android:background="@color/corBotao"
         android:textColor="@color/white"/>
 
 

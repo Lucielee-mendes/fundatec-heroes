@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".createCharacter.view.createCharacterActivity"
+    tools:context=".createCharacter.view.CreateCharacterActivity"
     android:background="@color/cor1">
 
     <ImageView
