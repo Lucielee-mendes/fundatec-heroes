@@ -86,6 +86,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
         android:text="Novo por aqui?"
-        android:textColor="@color/cor4"/>
+        android:textColor="@color/corBotao"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

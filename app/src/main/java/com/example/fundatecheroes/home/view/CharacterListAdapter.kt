@@ -24,4 +24,10 @@ class CharacterListAdapter : RecyclerView.Adapter<CharacterViewHolder>() {
         list.addAll(items)
         notifyDataSetChanged()
     }
+
+    fun removeItem() {
+        val position: Int = list.size
+        list.removeAt(position)
+        notifyItemChanged(position)
+    }
 }
