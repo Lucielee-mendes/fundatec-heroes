@@ -79,4 +79,77 @@
             android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textIdade"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="150dp"
+        app:layout_constraintEnd_toEndOf="@id/url_img_hero"
+        app:layout_constraintStart_toStartOf="@id/url_img_hero"
+        app:layout_constraintTop_toBottomOf="@+id/url_img_hero">
+
+        <EditText
+            android:id="@+id/editText_idade"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/app_idade"
+            android:imeOptions="actionNext"
+            android:inputType="number"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etData"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@id/url_img_hero"
+        app:layout_constraintStart_toEndOf="@+id/textIdade"
+        app:layout_constraintTop_toBottomOf="@+id/url_img_hero">
+
+    <EditText
+        android:id="@+id/bt_data"
+        android:layout_width="75dp"
+        android:layout_height="45dp"
+        android:hint="@string/data"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Spinner
+        android:id="@+id/tipo_personagem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/textIdade"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintStart_toStartOf="@id/textIdade"
+        app:layout_constraintTop_toBottomOf="@id/textIdade" />
+
+    <Spinner
+        android:id="@+id/tipo_empresa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="@id/url_img_hero"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toEndOf="@id/tipo_personagem"
+        app:layout_constraintTop_toBottomOf="@id/etData" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/check"
+        android:contentDescription="@string/app_criar_personagem"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/corBotao"
+
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

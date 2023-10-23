@@ -22,6 +22,7 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(binding.root)
         configButtonLogin()
+        configNewHereButton()
 
         viewModel.state.observe(this) {
             when (it) {
