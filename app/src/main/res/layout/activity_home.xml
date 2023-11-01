@@ -4,17 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.view.HomeActivity">
+    tools:context=".home.view.HomeActivity"
+    android:background="@color/corFundo">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:visibility="gone"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rv_list"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:spanCount="2"
+      tools:itemCount="5"
+      app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+      tools:listitem="@layout/character_list_item"/>
+
+  <Button
+    android:id="@+id/remover"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Remover personagem"
+      android:background="@color/corBotao"
+      android:textColor="@color/white"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="corFundo">#FFE4D6</color>
+    <color name="cor2">#FACBEA</color>
+    <color name="cor3">#D988B9</color>
+    <color name="corBotao">#B0578D</color>
+    <color name="cor5">#F78CA2</color>
+    <color name="cor6">#BC6879</color>
+    <color name="cor7">#EF4C6D</color>
+
+
 </resources>
