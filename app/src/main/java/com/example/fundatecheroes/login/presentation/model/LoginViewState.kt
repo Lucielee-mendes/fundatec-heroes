@@ -7,4 +7,6 @@ sealed class LoginViewState {
     data class Error(val errorMessage: String) : LoginViewState()
     object ShowEmailError : LoginViewState()
     object ShowPasswordError : LoginViewState()
+    object ShowHomeScreen: LoginViewState()
+    object ShowEmailPasswordError: LoginViewState()
 }

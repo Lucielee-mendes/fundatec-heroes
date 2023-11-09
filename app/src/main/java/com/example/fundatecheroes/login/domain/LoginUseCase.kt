@@ -18,4 +18,15 @@ class LoginUseCase {
             password = password,
         )
     }
+
+    suspend fun login(
+        password: String,
+        email: String,
+    ): Boolean {
+        return repository.login(
+            password = password,
+            email = email
+        )
+    }
+
 }

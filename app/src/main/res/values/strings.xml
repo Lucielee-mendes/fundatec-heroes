@@ -8,5 +8,13 @@
     <string name="app_idade">Idade</string>
     <string name="app_criar_personagem">Criar personagem</string>
     <string name="data">Data</string>
+    <string name="Nome">Nome</string>
+    <string name="Email">Email</string>
+    <string name="Senha">Senha</string>
+    <string name="Criar">Criar</string>
+    <string name="Login">Login</string>
+    <string name="novoporAqui">Novo por aqui?</string>
+    <string name="nome_error">Digite seu nome</string>
+
 </resources>
 

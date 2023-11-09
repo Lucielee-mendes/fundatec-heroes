@@ -33,23 +33,15 @@ class LoginActivity : AppCompatActivity() {
                     showEmailError()
                 LoginViewState.ShowPasswordError ->
                     showPasswordError()
+                LoginViewState.ShowEmailPasswordError -> TODO()
+                LoginViewState.ShowHomeScreen -> TODO()
             }
         }
 
-       /* binding.loginButton.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-
-        }*/
-
-        /*binding.newHereTextView.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
-        }*/
     }
     private fun configButtonLogin() {
         binding.loginButton.setOnClickListener {
-            viewModel.validateInputs(
+            viewModel.validacaoPreenchimento(
                 binding.emailEdit.text.toString(),
                 binding.passwordEdit.text.toString()
             )

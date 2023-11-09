@@ -3,52 +3,71 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.activity.viewModels
 import com.example.fundatecheroes.R
+import com.example.fundatecheroes.databinding.ActivityProfileBinding
+import com.example.fundatecheroes.profile.presentation.ProfileViewModel
+import com.example.fundatecheroes.profile.presentation.model.ProfileViewState
 import com.google.android.material.snackbar.Snackbar
 
 
 class ProfileActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityProfileBinding
+    private val viewModel: ProfileViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
-        val buttonCreate = findViewById<Button>(R.id.buttonCreate)
-        val editTextName = findViewById<EditText>(R.id.editTextName)
-        val editTextEmail = findViewById<EditText>(R.id.editTextEmail)
-        val editTextPassword = findViewById<EditText>(R.id.editTextPassword)
+        setTheme(R.style.Theme_FundatecHeroes)
+        binding = ActivityProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-
-        buttonCreate.setOnClickListener {
-            val name = editTextName.text.toString()
-            val email = editTextEmail.text.toString()
-            val password = editTextPassword.text.toString()
-
-
-            if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                showSnackbar("Todos os campos devem ser preenchidos")
-                return@setOnClickListener
+        viewModel.state.observe(this) {
+            when (it) {
+                ProfileViewState.Success ->{
+                    showSnackMessage("Sucesso ao criar o usuário")
+                    finish()
+                }
+                ProfileViewState.Error ->
+                    showSnackMessage("Ocorreu um erro ao criar o usuário")
+                ProfileViewState.Loading -> TODO()
+                ProfileViewState.ShowNameError ->
+                    showNameError()
+                ProfileViewState.ShowEmailError ->
+                    showEmailError()
+                ProfileViewState.ShowPasswordError ->
+                    showPasswordError()
             }
+        }
 
+        configBtCreateUser()
+    }
 
-            val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-            if (!email.matches(emailPattern.toRegex())) {
-                showSnackbar("Email inválido")
-                return@setOnClickListener
-            }
-
-
-            if (password.length < 8) {
-                showSnackbar("A senha deve ter pelo menos 8 caracteres")
-                return@setOnClickListener
-            }
-
-            showSnackbar("Perfil criado com sucesso")
+    private fun configBtCreateUser() {
+        binding.buttonCreate.setOnClickListener {
+            viewModel.validateInputs(
+                name = binding.editTextName.text.toString(),
+                email = binding.editTextEmail.text.toString(),
+                password = binding.editTextPassword.text.toString(),
+            )
         }
     }
 
-    private fun showSnackbar(message: String) {
+    private fun showNameError() {
+        binding.editTextName.error = getString(R.string.nome_error)
+    }
+
+    private fun showEmailError() {
+        binding.editTextEmail.error = getString(R.string.email_error)
+    }
+
+    private fun showPasswordError() {
+        binding.editTextPassword.error = getString(R.string.password_error)
+    }
+
+    private fun showSnackMessage(message: String) {
         Snackbar.make(
-            findViewById(android.R.id.content),
+            binding.root,
             message,
             Snackbar.LENGTH_LONG
         ).show()
