@@ -15,7 +15,7 @@ interface LoginService {
         @Body loginRequest: LoginRequest
     ): Response<LoginResponse>
 
-    @GET("api/login")
+    @GET("/api/login")
     suspend fun login(
         @Query("password") password: String,
         @Query("email") email: String
@@ -23,11 +23,3 @@ interface LoginService {
 
 }
 
-
-interface HomeService {
-
-    @POST("/api/list")
-    suspend fun createUser(
-        @Body loginRequest: LoginRequest
-    ): Response<LoginResponse>
-}

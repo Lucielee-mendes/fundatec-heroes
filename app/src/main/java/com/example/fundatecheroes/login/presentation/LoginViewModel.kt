@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fundatecheroes.login.domain.LoginUseCase
+import com.example.fundatecheroes.login.domain.isValidEmail
 import com.example.fundatecheroes.login.presentation.model.LoginViewState
 import kotlinx.coroutines.launch
 
@@ -22,24 +23,28 @@ class LoginViewModel:ViewModel() {
         email:String,
         password:String
     ) {
-        if (email.isEmpty() || password.isEmpty()) {
-            viewState.value = LoginViewState.ShowEmailPasswordError
-        } else if(email.contains("@") && email.contains(".com")) {
-            viewModelScope.launch {
-                val isSuccess = useCase.login(
-                    password = password,
-                    email = email,
-                )
-                if (isSuccess) {
-                    viewState.value = LoginViewState.ShowHomeScreen
-                }
-            }
-
-            viewState.value = LoginViewState.ShowHomeScreen
-        } else {
+        viewState.value = LoginViewState.Loading
+        if (email.isNullOrBlank() || !email.isValidEmail()) {
             viewState.value = LoginViewState.ShowEmailError
+            return
+        }
+        if (password.isNullOrBlank() || password.length < 16) {
+            viewState.value = LoginViewState.ShowPasswordError
+            return
         }
 
+        fetchLogin(email = email, password = password)
     }
 
+    private fun fetchLogin(email: String, password: String) {
+        viewModelScope.launch {
+            val isSuccessLogin = useCase.login(email = email, password = password)
+            viewState.value = if (isSuccessLogin) {
+                LoginViewState.ShowHomeScreen
+            } else {
+                LoginViewState.ShowErrorMessage
+            }
+        }
+
+}
 }

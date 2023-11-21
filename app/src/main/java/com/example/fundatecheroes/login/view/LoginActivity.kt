@@ -6,10 +6,13 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.fundatecheroes.R
 import com.example.fundatecheroes.databinding.ActivityLoginBinding
+import com.example.fundatecheroes.gone
 import com.example.fundatecheroes.home.view.HomeActivity
 import com.example.fundatecheroes.login.presentation.LoginViewModel
 import com.example.fundatecheroes.login.presentation.model.LoginViewState
 import com.example.fundatecheroes.profile.view.ProfileActivity
+import com.example.fundatecheroes.visible
+import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : AppCompatActivity() {
 
@@ -26,15 +29,12 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.state.observe(this) {
             when (it) {
-                is LoginViewState.Success -> TODO()
-                is LoginViewState.Error -> TODO()
-                LoginViewState.Loading -> TODO()
-                LoginViewState.ShowEmailError ->
-                    showEmailError()
-                LoginViewState.ShowPasswordError ->
-                    showPasswordError()
-                LoginViewState.ShowEmailPasswordError -> TODO()
-                LoginViewState.ShowHomeScreen -> TODO()
+                LoginViewState.ShowErrorMessage -> showSnackMessage()
+                LoginViewState.Loading -> binding.pbLoader.visible()
+                LoginViewState.ShowEmailError -> showEmailError()
+                LoginViewState.ShowPasswordError -> showPasswordError()
+                LoginViewState.ShowHomeScreen ->
+                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
             }
         }
 
@@ -45,7 +45,6 @@ class LoginActivity : AppCompatActivity() {
                 binding.emailEdit.text.toString(),
                 binding.passwordEdit.text.toString()
             )
-          startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
         }
     }
 
@@ -55,9 +54,21 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     private fun showEmailError() {
+        binding.pbLoader.gone()
         binding.emailEdit.error = getString(R.string.email_error)    }
 
     private fun showPasswordError() {
+        binding.pbLoader.gone()
         binding.passwordEdit.error = getString(R.string.password_error)
+    }
+
+    private fun showSnackMessage() {
+        binding.pbLoader.gone()
+
+        Snackbar.make(
+            binding.root,
+            R.string.login_error,
+            Snackbar.LENGTH_LONG
+        ).show()
     }
 }
