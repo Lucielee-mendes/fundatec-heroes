@@ -1,11 +1,11 @@
 package com.example.fundatecheroes.database
 
-import androidx.databinding.adapters.Converters
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.fundatecheroes.App
+import com.example.fundatecheroes.database.converter.Converters
 import com.example.fundatecheroes.login.data.local.UserDao
 import com.example.fundatecheroes.login.data.local.UserEntity
 

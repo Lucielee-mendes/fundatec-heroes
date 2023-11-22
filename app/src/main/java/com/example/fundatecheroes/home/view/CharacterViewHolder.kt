@@ -9,14 +9,14 @@ import com.example.fundatecheroes.gone
 class CharacterViewHolder (
     private val binding: CharacterListItemBinding
 ): RecyclerView.ViewHolder(binding.root){
-  fun bind(character:CharacterModel){
-      Glide.with(binding.root.context)
-          .load(character.image)
-          .into(binding.ivCharacter)
-      binding.tvName.text = character.name
+    fun bind(character:CharacterModel){
+        Glide.with(binding.root.context)
+            .load(character.image)
+            .into(binding.ivCharacter)
+        binding.tvName.text = character.name
 
-      binding.tvName.setOnClickListener{
-          binding.ivCharacter.gone()
-      }
-  }
+        binding.tvName.setOnClickListener{
+            binding.ivCharacter.gone()
+        }
+    }
 }
