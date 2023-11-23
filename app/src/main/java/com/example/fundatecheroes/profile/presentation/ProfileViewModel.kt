@@ -24,7 +24,7 @@ class ProfileViewModel : ViewModel() {
         } else if (password.isNullOrBlank()) {
             viewState.value = ProfileViewState.ShowPasswordError
         } else {
-
+            createrUser(name = name, email = email, password = password)
         }
     }
 

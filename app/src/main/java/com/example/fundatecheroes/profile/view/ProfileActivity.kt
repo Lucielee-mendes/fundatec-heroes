@@ -1,4 +1,5 @@
 package com.example.fundatecheroes.profile.view
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -6,6 +7,8 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import com.example.fundatecheroes.R
 import com.example.fundatecheroes.databinding.ActivityProfileBinding
+import com.example.fundatecheroes.home.view.HomeActivity
+import com.example.fundatecheroes.login.view.LoginActivity
 import com.example.fundatecheroes.profile.presentation.ProfileViewModel
 import com.example.fundatecheroes.profile.presentation.model.ProfileViewState
 import com.google.android.material.snackbar.Snackbar
@@ -50,6 +53,7 @@ class ProfileActivity : AppCompatActivity() {
                 email = binding.editTextEmail.text.toString(),
                 password = binding.editTextPassword.text.toString(),
             )
+
         }
     }
 

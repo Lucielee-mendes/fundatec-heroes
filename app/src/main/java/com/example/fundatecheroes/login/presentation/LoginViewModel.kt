@@ -28,7 +28,7 @@ class LoginViewModel:ViewModel() {
             viewState.value = LoginViewState.ShowEmailError
             return
         }
-        if (password.isNullOrBlank() || password.length < 16) {
+        if (password.isNullOrBlank() || password.length < 2) {
             viewState.value = LoginViewState.ShowPasswordError
             return
         }
