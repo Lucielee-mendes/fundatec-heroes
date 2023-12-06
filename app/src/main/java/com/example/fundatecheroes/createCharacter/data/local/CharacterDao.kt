@@ -11,8 +11,11 @@ interface CharacterDao {
     @Insert
     suspend fun insertCharacter(characterEntity: CharacterEntity)
 
-    @Query("SELECT date FROM character_table")
-    suspend fun getCharacterDate(): Date?
+    @Query("SELECT * FROM character_table")
+    suspend fun getCharacters(): List<CharacterEntity>
+
+    @Query("DELETE FROM character_table WHERE id = :characterId")
+    suspend fun deleteCharacterById(characterId: String)
 
     @Query("DELETE FROM character_table")
     suspend fun clearCharacterCache()

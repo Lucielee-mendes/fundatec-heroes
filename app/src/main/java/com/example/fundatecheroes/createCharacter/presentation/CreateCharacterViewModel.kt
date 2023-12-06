@@ -15,15 +15,17 @@ class CreateCharacterViewModel(private val repository: CreateCharacterRepository
 
     fun createCharacter(name: String, type: String, company: String) {
         viewModelScope.launch {
-            val isSuccess = repository.createCharacter(
-                name,
-                type,
-                company
-            )
-            if (isSuccess) {
-                _state.value = CreateCharacterViewState.ShowHomeScreen
+            _state.value = CreateCharacterViewState.Loading
+
+            val isSuccess = repository.createCharacter(name, type, company)
+
+            _state.value = if (isSuccess) {
+                // Limpar a tabela de cache após o sucesso
+                repository.clearCharacterCache()
+
+                CreateCharacterViewState.ShowHomeScreen
             } else {
-                _state.value = CreateCharacterViewState.Error
+                CreateCharacterViewState.Error
             }
         }
     }

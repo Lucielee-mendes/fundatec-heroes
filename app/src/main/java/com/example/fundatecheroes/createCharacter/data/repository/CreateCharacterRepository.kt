@@ -37,4 +37,8 @@ class CreateCharacterRepository(
             }
         }
     }
+    suspend fun clearCharacterCache() {
+        characterDao.clearCharacterCache()
+    }
+
 }

@@ -38,9 +38,8 @@ class HomeActivity : AppCompatActivity() {
         )
 
         binding.remover.setOnClickListener{
-            adapter.removeItem()
+            adapter.removeItem(0)
         }
 
     }
 }
-
