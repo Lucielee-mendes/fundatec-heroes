@@ -83,4 +83,10 @@ class LoginRepository {
             database.userDao().clearCache()
         }
     }
+
+    suspend fun getUserId(): Int {
+        return withContext(Dispatchers.IO) {
+            database.userDao().getUserId()
+        }
+    }
 }
