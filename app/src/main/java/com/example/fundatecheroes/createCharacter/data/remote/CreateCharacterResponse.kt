@@ -1,7 +1,8 @@
 package com.example.fundatecheroes.createCharacter.data.remote
 
+
 import com.example.fundatecheroes.createCharacter.data.local.CharacterEntity
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 data class CreateCharacterResponse(
     val id: Int,
@@ -11,9 +12,10 @@ data class CreateCharacterResponse(
     val type: String,
     val company: String,
     val age: Int,
-    val birthday: LocalDateTime?
+    val birthday: LocalDate?
 
 )
+
 
 fun CreateCharacterResponse.toCharacterEntity(): CharacterEntity {
     return CharacterEntity(

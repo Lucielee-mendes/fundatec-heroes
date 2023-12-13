@@ -6,4 +6,14 @@ sealed class CreateCharacterViewState {
     object Error : CreateCharacterViewState()
     object Loading : CreateCharacterViewState()
 
+    object ShowNameError: CreateCharacterViewState()
+    object ShowDescriptionError: CreateCharacterViewState()
+    object ShowImageError: CreateCharacterViewState()
+    object ShowUniverseTypeError: CreateCharacterViewState()
+    object ShowCharacterTypeError: CreateCharacterViewState()
+    object ShowAgeError: CreateCharacterViewState()
+    object ShowBirthDateError: CreateCharacterViewState()
+
+
+
 }

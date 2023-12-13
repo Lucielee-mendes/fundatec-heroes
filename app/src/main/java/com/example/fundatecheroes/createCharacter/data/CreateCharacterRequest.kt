@@ -1,6 +1,6 @@
 package com.example.fundatecheroes.createCharacter.data
 
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 data class CreateCharacterRequest(
     val name: String,
@@ -9,6 +9,6 @@ data class CreateCharacterRequest(
     val type: String,
     val company: String,
     val age: Int,
-    val  birthday: LocalDateTime?
+    val  birthday: LocalDate?
 
 )

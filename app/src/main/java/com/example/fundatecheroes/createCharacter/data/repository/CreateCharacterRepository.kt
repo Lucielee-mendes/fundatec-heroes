@@ -8,7 +8,6 @@ import com.example.fundatecheroes.login.data.repository.LoginRepository
 import com.example.fundatecheroes.network.RetrofitNetworkClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.time.LocalDateTime
 
 class CreateCharacterRepository(
     private val characterService: CreateCharacterService,
@@ -30,8 +29,7 @@ class CreateCharacterRepository(
         image: String,
         type: String,
         company: String,
-        age: Int,
-        birthday: LocalDateTime?
+        age: Int
     ): Boolean {
         return withContext(Dispatchers.IO) {
             try {

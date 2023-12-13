@@ -2,6 +2,7 @@ package com.example.fundatecheroes.createCharacter.data.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Entity(tableName = "character_table")
@@ -14,5 +15,5 @@ data class CharacterEntity(
     val type: String,
     val company: String,
     val age: Int,
-    val birthday: LocalDateTime?
+    val birthday: LocalDate?
 )

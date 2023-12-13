@@ -1,5 +1,7 @@
 package com.example.fundatecheroes.createCharacter.presentation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,34 +9,66 @@ import androidx.lifecycle.viewModelScope
 import com.example.fundatecheroes.createCharacter.data.repository.CreateCharacterRepository
 import com.example.fundatecheroes.createCharacter.presentation.model.CreateCharacterViewState
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
 
 class CreateCharacterViewModel(private val repository: CreateCharacterRepository) : ViewModel() {
+
 
     private val _state: MutableLiveData<CreateCharacterViewState> = MutableLiveData()
     val state: LiveData<CreateCharacterViewState> = _state
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun createCharacter(
         name: String,
         description: String,
         image: String,
         type: String,
         company: String,
-        age: Int,
-        birthday: LocalDateTime
+        age: Int
     ) {
-        viewModelScope.launch {
-            _state.value = CreateCharacterViewState.Loading
+        if (name.isNullOrBlank()) {
+            _state.value = CreateCharacterViewState.ShowNameError
+            return
+        } else if (description.isNullOrBlank()) {
+            _state.value = CreateCharacterViewState.ShowDescriptionError
+            return
+        } else if (image.isNullOrBlank()) {
+            _state.value = CreateCharacterViewState.ShowImageError
+            return
+        } else if (type.isNullOrBlank()) {
+            _state.value = CreateCharacterViewState.ShowUniverseTypeError
+            return
+        } else if (company.isNullOrBlank()) {
+            _state.value = CreateCharacterViewState.ShowCharacterTypeError
+            return
+        } else if (age <= 0) {
+            _state.value = CreateCharacterViewState.ShowAgeError
+            return
+       /* } else if (birthday.isAfter(LocalDate.now())){
+            _state.value = CreateCharacterViewState.ShowBirthDateError
+            return*/
+        }
+        else {
 
-            val isSuccess = repository.createCharacter(name, description, image, type, company, age, birthday)
+            viewModelScope.launch {
+                _state.value = CreateCharacterViewState.Loading
 
-            _state.value = if (isSuccess) {
-                // Limpar a tabela de cache após o sucesso
-                repository.clearCharacterCache()
+                val isSuccess = repository.createCharacter(
+                    name,
+                    description,
+                    image,
+                    type,
+                    company,
+                    age
+                )
 
-                CreateCharacterViewState.ShowHomeScreen
-            } else {
-                CreateCharacterViewState.Error
+                _state.value = if (isSuccess) {
+                    // Limpar a tabela de cache após o sucesso
+                    repository.clearCharacterCache()
+
+                    CreateCharacterViewState.ShowHomeScreen
+                } else {
+                    CreateCharacterViewState.Error
+                }
             }
         }
     }

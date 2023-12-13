@@ -1,62 +1,56 @@
 package com.example.fundatecheroes.createCharacter.view
 
 import android.content.Intent
-import android.os.Binder
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.example.fundatecheroes.R
 import com.example.fundatecheroes.createCharacter.presentation.CreateCharacterViewModel
 import com.example.fundatecheroes.createCharacter.presentation.model.CreateCharacterViewState
 import com.example.fundatecheroes.databinding.ActivityCreateCharacterBinding
+
 import com.example.fundatecheroes.home.view.HomeActivity
 
+private const val DELAY_TELA = 3000L
+
 class CreateCharacterActivity : AppCompatActivity() {
-    private  lateinit var binding: ActivityCreateCharacterBinding
-    private lateinit var viewModel: CreateCharacterViewModel
+    private lateinit var binding: ActivityCreateCharacterBinding
+    private val viewModel: CreateCharacterViewModel by viewModels()
 
     val characterTypes = arrayOf("Heroi", "Vilão")
     val companies = arrayOf("Marvel", "DC")
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateCharacterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this).get(CreateCharacterViewModel::class.java)
+        configButtonCriarPersonagem()
+        itensSpinnerCharacterType()
+        itensSpinnerCompany()
+    }
 
-
-        val characterTypeSpinner = findViewById<Spinner>(R.id.tipo_personagem)
-        val characterTypeAdapter = ArrayAdapter<String>(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            characterTypes
-        )
-        characterTypeSpinner.adapter = characterTypeAdapter
-
-        val companySpinner = findViewById<Spinner>(R.id.tipo_empresa)
-        val companyAdapter = ArrayAdapter<String>(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            companies
-        )
-        companySpinner.adapter = companyAdapter
-
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun configButtonCriarPersonagem() {
         binding.floatingButton.setOnClickListener {
-            // Obter os valores dos campos
-            val name = binding.nameHero.text.toString()
-            val type = characterTypeSpinner.selectedItem.toString()
-            val company = companySpinner.selectedItem.toString()
-
-            // Chamar a função do ViewModel para criar o personagem
-            viewModel.createCharacter(name, type, company)
+            viewModel.createCharacter(
+                binding.nameHero.text.toString(),
+                binding.description.text.toString(),
+                binding.imgHero.text.toString(),
+                binding.spinnerCharacterType.selectedItem.toString(),
+                binding.spinnerCompany.selectedItem.toString(),
+                binding.editTextIdade.text.toString().toIntOrNull() ?: 0
+            )
         }
 
-        // Observar o estado do ViewModel para navegar de volta à HomeActivity quando necessário
-        viewModel.state.observe(this, { state ->
-            when (state) {
+        viewModel.state.observe(this){
+            when (it) {
                 is CreateCharacterViewState.ShowHomeScreen -> {
                     // Navegar de volta para a HomeActivity
                     val intent = Intent(this, HomeActivity::class.java)
@@ -70,6 +64,27 @@ class CreateCharacterActivity : AppCompatActivity() {
                 // Adicionar mais casos conforme necessário
                 else -> {}
             }
-        })
+        }
+
+    }
+
+    private fun itensSpinnerCharacterType() {
+        val spinner = findViewById<Spinner>(R.id.spinner_character_type)
+        val arrayAdapter = ArrayAdapter<String>(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            characterTypes
+        )
+        spinner.adapter = arrayAdapter
+    }
+
+    private fun itensSpinnerCompany() {
+        val spinner = findViewById<Spinner>(R.id.spinner_company)
+        val arrayAdapter = ArrayAdapter<String>(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            companies
+        )
+        spinner.adapter = arrayAdapter
     }
 }
