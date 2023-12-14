@@ -19,4 +19,7 @@ interface CharacterDao {
 
     @Query("DELETE FROM character_table")
     suspend fun clearCharacterCache()
+
+    @Query("SELECT MAX(timestamp) FROM character_table")
+    suspend fun getLastCacheTimestamp(): Long?
 }

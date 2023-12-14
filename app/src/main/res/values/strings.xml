@@ -16,6 +16,17 @@
     <string name="Login">Login</string>
     <string name="novoporAqui">Novo por aqui?</string>
     <string name="nome_error">Digite seu nome</string>
+    <string-array name="characterTypes">
+        <item>Selecione</item>
+        <item>Heroi</item>
+        <item>Vilão</item>
+    </string-array>
+
+    <string-array name="companies">
+        <item>Selcione</item>
+        <item>Marvel</item>
+        <item>DC</item>
+    </string-array>
 
 </resources>
 

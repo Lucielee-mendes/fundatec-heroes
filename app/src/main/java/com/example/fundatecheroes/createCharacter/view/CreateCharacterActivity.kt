@@ -22,8 +22,6 @@ class CreateCharacterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateCharacterBinding
     private val viewModel: CreateCharacterViewModel by viewModels()
 
-    val characterTypes = arrayOf("Heroi", "Vilão")
-    val companies = arrayOf("Marvel", "DC")
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,7 +71,7 @@ class CreateCharacterActivity : AppCompatActivity() {
         val arrayAdapter = ArrayAdapter<String>(
             this,
             android.R.layout.simple_spinner_dropdown_item,
-            characterTypes
+            resources.getStringArray(R.array.characterTypes)
         )
         spinner.adapter = arrayAdapter
     }
@@ -83,7 +81,7 @@ class CreateCharacterActivity : AppCompatActivity() {
         val arrayAdapter = ArrayAdapter<String>(
             this,
             android.R.layout.simple_spinner_dropdown_item,
-            companies
+            resources.getStringArray(R.array.companies)
         )
         spinner.adapter = arrayAdapter
     }

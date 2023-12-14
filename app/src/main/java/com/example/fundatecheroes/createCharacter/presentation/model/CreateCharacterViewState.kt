@@ -13,6 +13,8 @@ sealed class CreateCharacterViewState {
     object ShowCharacterTypeError: CreateCharacterViewState()
     object ShowAgeError: CreateCharacterViewState()
     object ShowBirthDateError: CreateCharacterViewState()
+    object CharactersLoaded : CreateCharacterViewState()
+
 
 
 

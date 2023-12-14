@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.fundatecheroes.createCharacter.data.CreateCharacterRequest
 import com.example.fundatecheroes.createCharacter.data.local.CharacterDao
 import com.example.fundatecheroes.createCharacter.data.remote.CreateCharacterResponse
+import com.example.fundatecheroes.home.domain.CharacterModel
 import com.example.fundatecheroes.login.data.repository.LoginRepository
 import com.example.fundatecheroes.network.RetrofitNetworkClient
 import kotlinx.coroutines.Dispatchers
@@ -73,6 +74,26 @@ class CreateCharacterRepository(
                 listOf();
             }
         }
+    }
+    suspend fun getCharactersFromCache(): List<CharacterModel> {
+        // Chame o CharacterDao para obter a lista de personagens do cache
+        val characterEntities = characterDao.getCharacters()
+        // Converta de CharacterEntity para CharacterModel se necessário
+        return characterEntities.map { entity ->
+            CharacterModel(
+                name = entity.name,
+                description = entity.description,
+                image = entity.image,
+                type = entity.type,
+                company = entity.company,
+                age = entity.age
+            )
+        }
+    }
+
+    suspend fun getLastCacheTimestamp(): Long? {
+        // Chame o CharacterDao para obter o último timestamp
+        return characterDao.getLastCacheTimestamp()
     }
 
 }

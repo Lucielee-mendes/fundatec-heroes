@@ -52,22 +52,28 @@ class CreateCharacterViewModel(private val repository: CreateCharacterRepository
             viewModelScope.launch {
                 _state.value = CreateCharacterViewState.Loading
 
-                val isSuccess = repository.createCharacter(
-                    name,
-                    description,
-                    image,
-                    type,
-                    company,
-                    age
-                )
+                val lastCacheTimestamp = repository.getLastCacheTimestamp()
 
-                _state.value = if (isSuccess) {
-                    // Limpar a tabela de cache após o sucesso
-                    repository.clearCharacterCache()
+                if (lastCacheTimestamp == null || System.currentTimeMillis() - lastCacheTimestamp > 10 * 60 * 1000) {
+                    val isSuccess = repository.createCharacter(
+                        name,
+                        description,
+                        image,
+                        type,
+                        company,
+                        age
+                    )
 
-                    CreateCharacterViewState.ShowHomeScreen
+                    _state.value = if (isSuccess) {
+                        CreateCharacterViewState.ShowHomeScreen
+                    } else {
+                        CreateCharacterViewState.Error
+                    }
+
                 } else {
-                    CreateCharacterViewState.Error
+                    // Carrega dados do cache
+                    val charactersFromCache = repository.getCharactersFromCache()
+                    _state.value = CreateCharacterViewState.CharactersLoaded
                 }
             }
         }
