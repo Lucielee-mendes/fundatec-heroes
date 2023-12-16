@@ -1,80 +1,89 @@
 package com.example.fundatecheroes.createCharacter.presentation
 
-import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fundatecheroes.createCharacter.data.repository.CreateCharacterRepository
+import com.example.fundatecheroes.createCharacter.domain.CreateCharacterUseCase
+import com.example.fundatecheroes.createCharacter.presentation.model.CharacterType
 import com.example.fundatecheroes.createCharacter.presentation.model.CreateCharacterViewState
+import com.example.fundatecheroes.createCharacter.presentation.model.UniverseType
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 
-class CreateCharacterViewModel(private val repository: CreateCharacterRepository) : ViewModel() {
+class CreateCharacterViewModel() : ViewModel() {
+
+
+    private val useCase by lazy {
+        CreateCharacterUseCase()
+    }
 
 
     private val _state: MutableLiveData<CreateCharacterViewState> = MutableLiveData()
     val state: LiveData<CreateCharacterViewState> = _state
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun createCharacter(
         name: String,
         description: String,
         image: String,
-        type: String,
-        company: String,
-        age: Int
+        type: Int,
+        company: Int,
+        age: String,
+        birthday: String
     ) {
-        if (name.isNullOrBlank()) {
+        if (name.isBlank()) {
             _state.value = CreateCharacterViewState.ShowNameError
             return
-        } else if (description.isNullOrBlank()) {
+        } else if (description.isBlank()) {
             _state.value = CreateCharacterViewState.ShowDescriptionError
             return
-        } else if (image.isNullOrBlank()) {
+        } else if (image.isBlank()) {
             _state.value = CreateCharacterViewState.ShowImageError
             return
-        } else if (type.isNullOrBlank()) {
+        } else if (type == 0) {
             _state.value = CreateCharacterViewState.ShowUniverseTypeError
             return
-        } else if (company.isNullOrBlank()) {
+        } else if (company == 0) {
             _state.value = CreateCharacterViewState.ShowCharacterTypeError
             return
-        } else if (age <= 0) {
+        } else if (age.toInt() == 0) {
             _state.value = CreateCharacterViewState.ShowAgeError
             return
-       /* } else if (birthday.isAfter(LocalDate.now())){
+        }/* else if (birthday.isAfter(LocalDate.now())){
             _state.value = CreateCharacterViewState.ShowBirthDateError
-            return*/
-        }
+            return
+        }*/
         else {
 
             viewModelScope.launch {
                 _state.value = CreateCharacterViewState.Loading
 
-                val lastCacheTimestamp = repository.getLastCacheTimestamp()
+//                val lastCacheTimestamp = useCase.getLastCacheTimestamp()
 
-                if (lastCacheTimestamp == null || System.currentTimeMillis() - lastCacheTimestamp > 10 * 60 * 1000) {
-                    val isSuccess = repository.createCharacter(
-                        name,
-                        description,
-                        image,
-                        type,
-                        company,
-                        age
-                    )
+//                if (lastCacheTimestamp == null || System.currentTimeMillis() - lastCacheTimestamp > 10 * 60 * 1000) {
+                val isSuccess = useCase.createCharacter(
+                    name,
+                    description,
+                    image,
+                    type = CharacterType.getValueOf(type),
+                    company = UniverseType.getValueOf(company),
+                    age = age.toInt(),
+                    birthday = null
+                )
 
-                    _state.value = if (isSuccess) {
-                        CreateCharacterViewState.ShowHomeScreen
-                    } else {
-                        CreateCharacterViewState.Error
-                    }
-
+                _state.value = if (isSuccess) {
+                    CreateCharacterViewState.ShowHomeScreen
                 } else {
-                    // Carrega dados do cache
-                    val charactersFromCache = repository.getCharactersFromCache()
-                    _state.value = CreateCharacterViewState.CharactersLoaded
+                    CreateCharacterViewState.Error
                 }
+
+//                } else {
+//                    // Carrega dados do cache
+//                    val charactersFromCache = useCase.listCharacter()
+//                    _state.value = CreateCharacterViewState.CharactersLoaded
+//                }
             }
         }
     }

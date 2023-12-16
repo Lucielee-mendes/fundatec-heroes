@@ -16,6 +16,8 @@
     <string name="Login">Login</string>
     <string name="novoporAqui">Novo por aqui?</string>
     <string name="nome_error">Digite seu nome</string>
+    <string name="sucessoRemover_personagem">Personagem Removido!</string>
+
     <string-array name="characterTypes">
         <item>Selecione</item>
         <item>Heroi</item>

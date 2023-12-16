@@ -85,7 +85,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/etData"
+        app:layout_constraintEnd_toStartOf="@+id/til_Data"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/spinner_character_type"
         app:layout_constraintTop_toBottomOf="@+id/url_img_hero">
@@ -100,7 +100,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etData"
+        android:id="@+id/til_Data"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -111,7 +111,7 @@
         app:layout_constraintTop_toBottomOf="@+id/url_img_hero">
 
         <EditText
-            android:id="@+id/bt_data"
+            android:id="@+id/et_data"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/data"
@@ -141,7 +141,7 @@
         android:layout_marginStart="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/spinner_character_type"
-        app:layout_constraintTop_toBottomOf="@id/etData" />
+        app:layout_constraintTop_toBottomOf="@id/til_Data" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_button"

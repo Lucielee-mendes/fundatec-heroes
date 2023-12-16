@@ -6,11 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fundatecheroes.databinding.CharacterListItemBinding
 import com.example.fundatecheroes.home.domain.CharacterModel
 
-class CharacterListAdapter : RecyclerView.Adapter<CharacterViewHolder>() {
+class CharacterListAdapter  (private val click: (CharacterModel) -> Unit
+) : RecyclerView.Adapter<CharacterViewHolder>() {
+
     private val list:MutableList<CharacterModel> = mutableListOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val binding = CharacterListItemBinding.inflate(LayoutInflater.from(parent.context),parent, false)
-        return CharacterViewHolder(binding)
+        return CharacterViewHolder(binding, click)
     }
 
     override fun getItemCount(): Int {
@@ -26,8 +28,10 @@ class CharacterListAdapter : RecyclerView.Adapter<CharacterViewHolder>() {
     }
 
     fun removeItem(position: Int) {
-        //val position: Int = list.size
         list.removeAt(position)
         notifyItemChanged(position)
+    }
+    fun recuperaPersonagem(position: Int): CharacterModel {
+        return list[position]
     }
 }

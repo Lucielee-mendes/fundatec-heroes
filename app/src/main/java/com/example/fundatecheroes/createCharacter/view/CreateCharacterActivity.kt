@@ -23,43 +23,42 @@ class CreateCharacterActivity : AppCompatActivity() {
     private val viewModel: CreateCharacterViewModel by viewModels()
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateCharacterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        configButtonCriarPersonagem()
+        configButtonNewPersonagem()
         itensSpinnerCharacterType()
         itensSpinnerCompany()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun configButtonCriarPersonagem() {
+    private fun configButtonNewPersonagem() {
         binding.floatingButton.setOnClickListener {
             viewModel.createCharacter(
                 binding.nameHero.text.toString(),
                 binding.description.text.toString(),
                 binding.imgHero.text.toString(),
-                binding.spinnerCharacterType.selectedItem.toString(),
-                binding.spinnerCompany.selectedItem.toString(),
-                binding.editTextIdade.text.toString().toIntOrNull() ?: 0
+                binding.spinnerCharacterType.selectedItemPosition,
+                binding.spinnerCompany.selectedItemPosition,
+                binding.editTextIdade.text.toString(),
+                binding.etData.text.toString(),
             )
         }
 
         viewModel.state.observe(this){
             when (it) {
                 is CreateCharacterViewState.ShowHomeScreen -> {
-                    // Navegar de volta para a HomeActivity
+
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
-                    finish() // Isso encerrará a CreateCharacterActivity após a navegação
+                    finish()
                 }
                 CreateCharacterViewState.Error -> {
                     // Exibir mensagem de erro, se necessário
                     Toast.makeText(this, "Erro ao criar o personagem", Toast.LENGTH_SHORT).show()
                 }
-                // Adicionar mais casos conforme necessário
                 else -> {}
             }
         }

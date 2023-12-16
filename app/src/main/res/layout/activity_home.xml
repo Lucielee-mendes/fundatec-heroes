@@ -18,17 +18,6 @@
       tools:listitem="@layout/character_list_item"/>
 
   <Button
-    android:id="@+id/remover"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="Remover personagem"
-      android:background="@color/corBotao"
-      android:textColor="@color/white"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintBottom_toBottomOf="parent"/>
-
-  <Button
       android:id="@+id/adicionar"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -36,7 +25,6 @@
       android:background="@color/corBotao"
       android:textColor="@color/white"
       android:layout_marginBottom="20dp"
-      app:layout_constraintBottom_toTopOf="@+id/remover"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintBottom_toBottomOf="parent"/>
