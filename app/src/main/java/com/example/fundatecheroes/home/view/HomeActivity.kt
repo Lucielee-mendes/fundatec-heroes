@@ -8,8 +8,10 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fundatecheroes.R
+import com.example.fundatecheroes.createCharacter.view.CharacterDetailsActivity
 import com.example.fundatecheroes.createCharacter.view.CreateCharacterActivity
 import com.example.fundatecheroes.databinding.ActivityHomeBinding
+import com.example.fundatecheroes.home.domain.CharacterModel
 import com.example.fundatecheroes.home.presentation.model.HomeViewModel
 import com.example.fundatecheroes.home.presentation.model.HomeViewState
 import com.example.fundatecheroes.showSnackBar
@@ -21,7 +23,7 @@ class HomeActivity : AppCompatActivity() {
     private  val adapter:CharacterListAdapter by lazy {
         CharacterListAdapter(){
             Log.e("Home Activity", it.toString())
-            configNewHereCharacter()
+            telaCharacterDetails(it)
         }
     }
 
@@ -47,8 +49,7 @@ class HomeActivity : AppCompatActivity() {
                         R.string.sucessoRemover_personagem
                     )
 
-                HomeViewState.Loading ->
-                {
+                HomeViewState.Loading -> {
 
                 }
 
@@ -57,19 +58,6 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-       /* adapter.addList(
-            listOf(
-                CharacterModel(
-                    name = "Hulk",
-                    image = "https://t.ctcdn.com.br/5bU4_4Zvdqn2gkI3z-VYo_JhEHQ=/1245x700/smart/i632776.jpeg",
-                ),
-                CharacterModel(
-                    name = "Batman",
-                    image = "https://image.api.playstation.com/vulcan/img/rnd/202010/2621/H9v5o8vP6RKkQtR77LIGrGDE.png",
-                )
-            )
-        )
-*/
 
         configSwipeToRemove()
     }
@@ -88,6 +76,12 @@ class HomeActivity : AppCompatActivity() {
         binding.adicionar.setOnClickListener {
             startActivity(Intent(this@HomeActivity, CreateCharacterActivity::class.java))
         }
+    }
+
+    private fun telaCharacterDetails(characterModel: CharacterModel){
+        val intent = Intent(this@HomeActivity, CharacterDetailsActivity::class.java)
+        intent.putExtra("character", characterModel)
+        startActivity(intent)
     }
 
 }

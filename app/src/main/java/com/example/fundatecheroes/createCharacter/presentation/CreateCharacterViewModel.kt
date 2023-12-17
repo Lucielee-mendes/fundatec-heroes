@@ -67,8 +67,8 @@ class CreateCharacterViewModel() : ViewModel() {
                     name,
                     description,
                     image,
-                    type = CharacterType.getValueOf(type),
-                    company = UniverseType.getValueOf(company),
+                    characterType = CharacterType.getValueOf(type),
+                    universeType = UniverseType.getValueOf(company),
                     age = age.toInt(),
                     birthday = null
                 )

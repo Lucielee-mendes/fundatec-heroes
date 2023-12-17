@@ -19,16 +19,3 @@ data class CreateCharacterResponse(
 )
 
 
-/*
-fun CreateCharacterResponse.toCharacterEntity(): CharacterEntity {
-    return CharacterEntity(
-        id = id,
-        name = name,
-        description = description,
-        image = image,
-        type = type,
-        company = company,
-        age = age,
-        birthday = birthday
-    )
-}*/
