@@ -39,7 +39,7 @@ class HomeViewModel() : ViewModel() {
         viewModelScope.launch {
             val characterDelete = useCase.removeCharacter(characterId)
             if (characterDelete) {
-                viewState.value = HomeViewState.CharacterRemove;
+                viewState.value = HomeViewState.CharacterRemover;
             } else {
                 viewState.value = HomeViewState.Error("Não existe personagem com o id informado.")
             }

@@ -3,7 +3,7 @@ package com.example.fundatecheroes
 import android.app.Application
 import android.content.Context
 
-class App : Application() {
+class App() : Application() {
 
     companion object {
 

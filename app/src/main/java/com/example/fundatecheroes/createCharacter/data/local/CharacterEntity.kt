@@ -12,8 +12,8 @@ data class CharacterEntity(
     val name: String,
     val description: String,
     val image: String,
-    val type: String,
-    val company: String,
+    val characterType: String,
+    val universeType: String,
     val age: Int,
-    val birthday: LocalDate?
+    val birthday: String?
 )

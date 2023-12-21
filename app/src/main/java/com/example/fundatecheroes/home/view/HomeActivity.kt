@@ -43,7 +43,7 @@ class HomeActivity : AppCompatActivity() {
                     adapter.addList(
                         it.list
                     )
-                is HomeViewState.CharacterRemove ->
+                is HomeViewState.CharacterRemover ->
                     showSnackBar(
                         binding.root,
                         R.string.sucessoRemover_personagem

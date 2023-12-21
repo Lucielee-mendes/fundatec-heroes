@@ -15,6 +15,7 @@ import com.example.fundatecheroes.createCharacter.presentation.model.CreateChara
 import com.example.fundatecheroes.databinding.ActivityCreateCharacterBinding
 
 import com.example.fundatecheroes.home.view.HomeActivity
+import com.example.fundatecheroes.visible
 
 private const val DELAY_TELA = 3000L
 
@@ -59,6 +60,7 @@ class CreateCharacterActivity : AppCompatActivity() {
                     // Exibir mensagem de erro, se necessário
                     Toast.makeText(this, "Erro ao criar o personagem", Toast.LENGTH_SHORT).show()
                 }
+                CreateCharacterViewState.Loading  -> binding.pbLoader.visible()
                 else -> {}
             }
         }

@@ -11,6 +11,7 @@ import com.example.fundatecheroes.home.view.HomeActivity
 import com.example.fundatecheroes.login.view.LoginActivity
 import com.example.fundatecheroes.profile.presentation.ProfileViewModel
 import com.example.fundatecheroes.profile.presentation.model.ProfileViewState
+import com.example.fundatecheroes.visible
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -33,7 +34,7 @@ class ProfileActivity : AppCompatActivity() {
                 }
                 ProfileViewState.Error ->
                     showSnackMessage("Ocorreu um erro ao criar o usuário")
-                ProfileViewState.Loading -> TODO()
+                ProfileViewState.Loading -> binding.pbLoader.visible()
                 ProfileViewState.ShowNameError ->
                     showNameError()
                 ProfileViewState.ShowEmailError ->
