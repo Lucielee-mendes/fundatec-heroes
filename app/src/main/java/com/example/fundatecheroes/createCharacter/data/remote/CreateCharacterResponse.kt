@@ -1,9 +1,7 @@
 package com.example.fundatecheroes.createCharacter.data.remote
 
 
-import com.example.fundatecheroes.createCharacter.data.local.CharacterEntity
 import com.squareup.moshi.JsonClass
-import java.time.LocalDate
 
 @JsonClass(generateAdapter = true)
 data class CreateCharacterResponse(

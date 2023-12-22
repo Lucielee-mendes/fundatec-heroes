@@ -1,17 +1,14 @@
 package com.example.fundatecheroes.createCharacter.presentation
 
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fundatecheroes.createCharacter.data.repository.CreateCharacterRepository
 import com.example.fundatecheroes.createCharacter.domain.CreateCharacterUseCase
 import com.example.fundatecheroes.createCharacter.presentation.model.CharacterType
 import com.example.fundatecheroes.createCharacter.presentation.model.CreateCharacterViewState
 import com.example.fundatecheroes.createCharacter.presentation.model.UniverseType
 import kotlinx.coroutines.launch
-import java.time.LocalDate
 
 class CreateCharacterViewModel() : ViewModel() {
 
@@ -60,9 +57,6 @@ class CreateCharacterViewModel() : ViewModel() {
             viewModelScope.launch {
                 _state.value = CreateCharacterViewState.Loading
 
-//                val lastCacheTimestamp = useCase.getLastCacheTimestamp()
-
-//                if (lastCacheTimestamp == null || System.currentTimeMillis() - lastCacheTimestamp > 10 * 60 * 1000) {
                 val isSuccess = useCase.createCharacter(
                     name,
                     description,
@@ -79,12 +73,8 @@ class CreateCharacterViewModel() : ViewModel() {
                     CreateCharacterViewState.Error
                 }
 
-//                } else {
-//                    // Carrega dados do cache
-//                    val charactersFromCache = useCase.listCharacter()
-//                    _state.value = CreateCharacterViewState.CharactersLoaded
-//                }
+               }
             }
         }
     }
-}
+

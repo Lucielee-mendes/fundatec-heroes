@@ -4,7 +4,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fundatecheroes.databinding.CharacterListItemBinding
 import com.example.fundatecheroes.home.domain.CharacterModel
 import com.bumptech.glide.Glide
-import com.example.fundatecheroes.gone
 
 class CharacterViewHolder(
     private val binding: CharacterListItemBinding,

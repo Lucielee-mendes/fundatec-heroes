@@ -1,13 +1,11 @@
 package com.example.fundatecheroes.createCharacter.view
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fundatecheroes.R
 import com.example.fundatecheroes.createCharacter.presentation.CreateCharacterViewModel
@@ -17,7 +15,6 @@ import com.example.fundatecheroes.databinding.ActivityCreateCharacterBinding
 import com.example.fundatecheroes.home.view.HomeActivity
 import com.example.fundatecheroes.visible
 
-private const val DELAY_TELA = 3000L
 
 class CreateCharacterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateCharacterBinding

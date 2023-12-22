@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fundatecheroes.createCharacter.data.local.CharacterDao
-import com.example.fundatecheroes.createCharacter.data.repository.CreateCharacterRepository
 import com.example.fundatecheroes.createCharacter.domain.CreateCharacterUseCase
 import com.example.fundatecheroes.home.domain.toModel
 import kotlinx.coroutines.launch
@@ -19,7 +17,6 @@ class HomeViewModel() : ViewModel() {
     private val viewState: MutableLiveData<HomeViewState> = MutableLiveData()
     val state: LiveData<HomeViewState> = viewState
 
-    private var lastCacheTime: Long = 0
 
 
     // Buscar personagens na API

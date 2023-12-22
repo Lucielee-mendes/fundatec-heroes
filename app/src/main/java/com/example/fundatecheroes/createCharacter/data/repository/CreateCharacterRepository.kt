@@ -2,11 +2,7 @@ package com.example.fundatecheroes.createCharacter.data.repository
 
 import android.util.Log
 import com.example.fundatecheroes.createCharacter.data.CreateCharacterRequest
-import com.example.fundatecheroes.createCharacter.data.local.CharacterDao
 import com.example.fundatecheroes.createCharacter.data.remote.CreateCharacterResponse
-import com.example.fundatecheroes.database.FHDatabase
-import com.example.fundatecheroes.home.domain.CharacterModel
-import com.example.fundatecheroes.login.data.local.UserDao
 import com.example.fundatecheroes.login.data.repository.LoginRepository
 import com.example.fundatecheroes.network.RetrofitNetworkClient
 import kotlinx.coroutines.Dispatchers
@@ -47,7 +43,6 @@ class CreateCharacterRepository {
                     )
                 )
                 if (response.isSuccessful) {
-//                    characterDao.clearCharacterCache()
                     true
                 } else {
                     false
@@ -59,10 +54,7 @@ class CreateCharacterRepository {
         }
     }
 
-    // revisar
-    suspend fun clearCharacterCache() {
-//        characterDao.clearCharacterCache()
-    }
+
 
     suspend fun listCharacter(): List<CreateCharacterResponse> {
         return withContext(Dispatchers.IO) {
